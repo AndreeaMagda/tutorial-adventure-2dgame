@@ -6,15 +6,18 @@ public class PlayerController : MonoBehaviour
     private BoardManager m_Board;
     private Vector2Int m_CellPosition;
 
-    // Spawns the player at the specified cell position
     public void Spawn(BoardManager boardManager, Vector2Int cell)
     {
         m_Board = boardManager;
-        m_CellPosition = cell;
-
-        // Move to the correct world position based on the cell
-        transform.position = m_Board.CellToWorld(cell);
+        MoveTo(cell);
     }
+
+    public void MoveTo(Vector2Int cell)
+    {
+        m_CellPosition = cell;
+        transform.position = m_Board.CellToWorld(m_CellPosition);
+    }
+
 
     private void Update()
     {
@@ -44,14 +47,14 @@ public class PlayerController : MonoBehaviour
 
         if (hasMoved)
         {
-         
+            //check if the new position is passable, then move there if it is.
             BoardManager.CellData cellData = m_Board.GetCellData(newCellTarget);
 
             if (cellData != null && cellData.Passable)
             {
-                m_CellPosition = newCellTarget;
-                transform.position = m_Board.CellToWorld(m_CellPosition);
+                MoveTo(newCellTarget);
             }
         }
     }
+
 }
