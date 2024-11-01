@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
@@ -52,9 +53,11 @@ public class PlayerController : MonoBehaviour
 
             if (cellData != null && cellData.Passable)
             {
+                GameManager.Instance.m_TurnManager.Tick();
                 MoveTo(newCellTarget);
             }
         }
+
     }
 
 }
