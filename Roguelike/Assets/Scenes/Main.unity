@@ -537,10 +537,55 @@ MonoBehaviour:
   Width: 8
   Height: 8
   GroundTiles:
-  - {fileID: 11400000, guid: bcf86fdfc4ab59f43ba069c65de7ed64, type: 2}
-  WallTiles:
-  - {fileID: 11400000, guid: 04a2d4ac5b281c643afaeaf41f2a3ffe, type: 2}
-  Player: {fileID: 347262562}
+  - {fileID: 11400000, guid: e8f9c9d3ec8e06f4b807ea047f20b994, type: 2}
+  BlockingTiles:
+  - {fileID: 11400000, guid: b40f670235a3d5d40843e67b3df723f2, type: 2}
+--- !u!1 &1720514680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1720514682}
+  - component: {fileID: 1720514681}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1720514681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720514680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581b4a435e24b0f429d633cc2069f55e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoardManager: {fileID: 1444795920}
+  PlayerController: {fileID: 347262562}
+--- !u!4 &1720514682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720514680}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.520581, y: 6.5010557, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -548,3 +593,4 @@ SceneRoots:
   - {fileID: 717191690}
   - {fileID: 1444795919}
   - {fileID: 347262561}
+  - {fileID: 1720514682}

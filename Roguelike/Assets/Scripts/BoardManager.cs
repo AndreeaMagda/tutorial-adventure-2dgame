@@ -3,25 +3,21 @@ using UnityEngine.Tilemaps;
 
 public class BoardManager : MonoBehaviour
 {
-    private Tilemap m_Tilemap;
-    private Grid m_Grid;  // Added Grid reference
-
-    public int Width;
-    public int Height;
-    public Tile[] GroundTiles;
-    public Tile[] WallTiles;
-
-    public PlayerController Player;  // Player reference
-
     public class CellData
     {
         public bool Passable;
     }
 
     private CellData[,] m_BoardData;
+    private Tilemap m_Tilemap;
+    private Grid m_Grid;
 
-    // Start is called before the first frame update
-    void Start()
+    public int Width;
+    public int Height;
+    public Tile[] GroundTiles;
+    public Tile[] BlockingTiles;
+
+    public void Init()
     {
         m_Tilemap = GetComponentInChildren<Tilemap>();
         m_Grid = GetComponentInChildren<Grid>();
@@ -37,30 +33,23 @@ public class BoardManager : MonoBehaviour
 
                 if (x == 0 || y == 0 || x == Width - 1 || y == Height - 1)
                 {
-                    tile = WallTiles.Length > 0 ? WallTiles[Random.Range(0, WallTiles.Length)] : null;
+                    tile = BlockingTiles[Random.Range(0, BlockingTiles.Length)];
                     m_BoardData[x, y].Passable = false;
                 }
                 else
                 {
-                    tile = GroundTiles.Length > 0 ? GroundTiles[Random.Range(0, GroundTiles.Length)] : null;
+                    tile = GroundTiles[Random.Range(0, GroundTiles.Length)];
                     m_BoardData[x, y].Passable = true;
                 }
 
-                if (tile != null)
-                {
-                    m_Tilemap.SetTile(new Vector3Int(x, y, 0), tile);
-                }
+                m_Tilemap.SetTile(new Vector3Int(x, y, 0), tile);
             }
         }
-
-        // Spawning the player at the specified position
-        Player.Spawn(this, new Vector2Int(1, 1));
     }
 
-    // Converts a grid cell position to world position
-    public Vector3 CellToWorld(Vector2Int cellPosition)
+    public Vector3 CellToWorld(Vector2Int cellIndex)
     {
-        return m_Grid.CellToWorld(new Vector3Int(cellPosition.x, cellPosition.y, 0));
+        return m_Grid.GetCellCenterWorld((Vector3Int)cellIndex);
     }
 
     public CellData GetCellData(Vector2Int cellIndex)
